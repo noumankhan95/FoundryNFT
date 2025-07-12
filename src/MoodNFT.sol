@@ -13,7 +13,7 @@ contract MoodNFT is ERC721, Ownable {
         HAPPY
     }
 
-    mapping(uint256 => moodState) s_idToState;
+    mapping(uint256 => moodState) public s_idToState;
     uint256 s_tokenCounter;
     string s_happySVG;
     string s_sadSVG;
@@ -69,5 +69,9 @@ contract MoodNFT is ERC721, Ownable {
                     '"}'
                 )
             );
+    }
+
+    function getMood(uint256 tokenId) external view returns (moodState) {
+        return s_idToState[tokenId];
     }
 }
